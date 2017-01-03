@@ -1,6 +1,7 @@
 //Putty Start Command: -serial COM15 -sercfg 115200,8,n,1,N
 
 #include <EEPROM.h>
+#include "esc_codes.h"
 
 #define IOR             true  // Allways show install at startup
 #define BAUD_RATE       115200  // Serial Baud Rate

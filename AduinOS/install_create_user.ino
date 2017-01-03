@@ -1,5 +1,4 @@
 void install_CreateUser() {
-MenuStart:
   SendEscCode(ESC_RESET);
   ClearScreen();
   CursorPos(0, 0);
@@ -7,9 +6,6 @@ MenuStart:
   FillScreen(COLOR_BLUE);
   CursorPos(33, 0);
   Serial.println("ArduinOS Setup");
-
-  // >-- Create User Menu --<
-
   FillRect(21, 9, 40, 9, COLOR_BLACK);
   FillRect(20, 8, 40, 9, COLOR_RED);
   SetForeColor(COLOR_RED);
@@ -24,12 +20,7 @@ MenuStart:
   Serial.write("Password:");
   CursorPos(21, 14);
   Serial.write("Confirme:");
-  CursorPos(37, 16);
-  SetBackColor(COLOR_WHITE);
-  SetForeColor(COLOR_RED);
-  Serial.write("  OK  ");
-  SetBackColor(COLOR_BLUE);
-  SetForeColor(COLOR_WHITE);
+  OKNormal();
   CursorPos(31, 10);
   Serial.write("               ");
   CursorPos(31, 12);
@@ -64,13 +55,36 @@ MenuStart:
             CursorPos(31 + _password.length(), 12);
             break;
           case 2:
+            OKNormal();
             CursorPos(31 + Confirme.length(), 14);
+            break;
+          case 3:
+            OKSelected();
             break;
         }
       }
       else if (data == KEY_ARROW_DOWN or data == KEY_ENTER) {
-        if (SMenu < 2) {
+        if (SMenu < 3) {
           SMenu++;
+        }
+        else {
+          if (data == KEY_ENTER){
+            if (_username.length() > 0 and _password == Confirme){
+              Username = _username;
+              Password = _password;
+              return;
+            }
+            else {
+              CursorPos(0,SHELL_HEIGHT - 1);
+              if (_username.length() == 0){
+                Prompt("Please fill in username",0,'\x07',0);
+              }
+              else {
+                Prompt("Password and confirme does not match",0,'\x07',0);
+              }
+              ClearLine(2);
+            }
+          }
         }
         switch (SMenu) {
           case 0:
@@ -82,12 +96,13 @@ MenuStart:
           case 2:
             CursorPos(31 + Confirme.length(), 14);
             break;
+          case 3:
+            OKSelected();
+            break;
         }
       }
       else if (data == KEY_ARROW_LEFT) {
-        Serial.print(_username);
-        Serial.print(" - ");
-        Serial.print(_password);
+        
       }
       else if (data == KEY_ARROW_RIGHT) {
 
@@ -141,13 +156,28 @@ MenuStart:
             }
             break;
         }
-        /*
-          for (int i = 0; i < data.length(); i++){
-          Serial.print(data.charAt(i),DEC);
-          Serial.print("-");
-          }
-        */
       }
     }
   }
 }
+
+void OKNormal(){
+  CursorPos(37, 16);
+  SetBackColor(COLOR_WHITE);
+  SetForeColor(COLOR_RED);
+  Serial.write("  OK  ");
+  SetBackColor(COLOR_BLUE);
+  SetForeColor(COLOR_WHITE);
+  CursorPos(37, 16);
+}
+
+void OKSelected(){
+  CursorPos(37, 16);
+  SetBackColor(COLOR_GREEN);
+  SetForeColor(COLOR_RED);
+  Serial.write("  OK  ");
+  SetBackColor(COLOR_BLUE);
+  SetForeColor(COLOR_WHITE);
+  CursorPos(37, 16);
+}
+

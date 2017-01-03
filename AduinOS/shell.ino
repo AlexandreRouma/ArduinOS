@@ -1,6 +1,7 @@
 boolean ShellRunning = true;
 
 void shell(String user, String pass) {
+  //Serial.println(SplitString("echo I LIKE TURTLES",' ')[2]);
   SendEscCode(ESC_RESET);
   ClearScreen();
   CursorPos(0, 0);
@@ -27,6 +28,7 @@ void Session(String u, String cn) {
     String command = Prompt("", 0, 0, 0);
     Serial.println("");
     RunCommand(command, u);
+    command = "";
   }
 }
 
