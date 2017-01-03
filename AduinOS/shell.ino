@@ -19,7 +19,7 @@ void shell(String user, String pass) {
 
 void Session(String u, String cn) {
   SetForeColor(COLOR_CYAN);
-  Serial.println("-- PenutOS Shell --");
+  Serial.println("-- ArduinOS Shell --");
   Serial.println();
   int XPos = u.length() + cn.length() + 2;
 

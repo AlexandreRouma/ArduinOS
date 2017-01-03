@@ -22,3 +22,23 @@ void install() {
   while (1);
   */
 }
+
+void OKNormal(int x, int y){
+  CursorPos(x, y);
+  SetBackColor(COLOR_WHITE);
+  SetForeColor(COLOR_RED);
+  Serial.write("  OK  ");
+  SetBackColor(COLOR_BLUE);
+  SetForeColor(COLOR_WHITE);
+  CursorPos(x, y);
+}
+
+void OKSelected(int x, int y){
+  CursorPos(x, y);
+  SetBackColor(COLOR_GREEN);
+  SetForeColor(COLOR_RED);
+  Serial.write("  OK  ");
+  SetBackColor(COLOR_BLUE);
+  SetForeColor(COLOR_WHITE);
+  CursorPos(x, y);
+}

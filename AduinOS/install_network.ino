@@ -18,7 +18,7 @@ void install_network() {
   Serial.write("IP:");
   CursorPos(21, 12);
   Serial.write("Mac:");
-  OKNormal();
+  OKNormal(37,16);
   CursorPos(31, 10);
   Serial.write("               ");
   CursorPos(31, 12);
@@ -49,7 +49,7 @@ void install_network() {
             CursorPos(31 + _mac.length(), 12);
             break;
           case 2:
-            OKSelected();
+            OKSelected(37,16);
             break;
         }
       }
@@ -84,7 +84,7 @@ void install_network() {
             CursorPos(31 + _mac.length(), 12);
             break;
           case 2:
-            OKSelected();
+            OKSelected(37,16);
             break;
         }
       }

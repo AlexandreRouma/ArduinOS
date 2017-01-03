@@ -20,7 +20,7 @@ void install_CreateUser() {
   Serial.write("Password:");
   CursorPos(21, 14);
   Serial.write("Confirme:");
-  OKNormal();
+  OKNormal(37,16);
   CursorPos(31, 10);
   Serial.write("               ");
   CursorPos(31, 12);
@@ -55,11 +55,11 @@ void install_CreateUser() {
             CursorPos(31 + _password.length(), 12);
             break;
           case 2:
-            OKNormal();
+            OKNormal(37,16);
             CursorPos(31 + Confirme.length(), 14);
             break;
           case 3:
-            OKSelected();
+            OKSelected(37,16);
             break;
         }
       }
@@ -97,7 +97,7 @@ void install_CreateUser() {
             CursorPos(31 + Confirme.length(), 14);
             break;
           case 3:
-            OKSelected();
+            OKSelected(37,16);
             break;
         }
       }
@@ -159,25 +159,5 @@ void install_CreateUser() {
       }
     }
   }
-}
-
-void OKNormal(){
-  CursorPos(37, 16);
-  SetBackColor(COLOR_WHITE);
-  SetForeColor(COLOR_RED);
-  Serial.write("  OK  ");
-  SetBackColor(COLOR_BLUE);
-  SetForeColor(COLOR_WHITE);
-  CursorPos(37, 16);
-}
-
-void OKSelected(){
-  CursorPos(37, 16);
-  SetBackColor(COLOR_GREEN);
-  SetForeColor(COLOR_RED);
-  Serial.write("  OK  ");
-  SetBackColor(COLOR_BLUE);
-  SetForeColor(COLOR_WHITE);
-  CursorPos(37, 16);
 }
 
